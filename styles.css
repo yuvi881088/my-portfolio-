@@ -105,12 +105,13 @@ body::before {
     display: block;
 }
 
-/* card hover */
+/* Enhanced card hover */
 .card-h {
-    transition: transform .28s cubic-bezier(.4,0,.2,1), border-color .18s;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, border-color 0.18s;
 }
 .card-h:hover {
-    transform: translateY(-4px);
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 40px -10px rgba(255, 107, 43, 0.15);
 }
 
 /* skill tag */
@@ -120,4 +121,37 @@ body::before {
 
 [x-cloak] {
     display: none !important;
+}
+
+/* Glassmorphism */
+.glass {
+    background: rgba(255, 255, 255, 0.7) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.5) !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05) !important;
+}
+.dark .glass {
+    background: rgba(24, 24, 27, 0.7) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Gradient Text */
+.text-gradient {
+    background: linear-gradient(135deg, #FF6B2B 0%, #FFB088 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+}
+
+/* Floating animation */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+    100% { transform: translateY(0px); }
+}
+.float-anim {
+    animation: float 6s ease-in-out infinite;
 }
