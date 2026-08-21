@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en" x-data="app()" :class="{'dark':dark}" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Yuvraj Parmar — Portfolio">
+    <title>Yuvraj Parmar — Portfolio</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+
+    <script>
+    tailwind.config = {
+        darkMode: 'class',
+        theme: {
+            extend: {
+                fontFamily: { display: ['PT Sans','sans-serif'], body: ['DM Sans','sans-serif'] },
+                colors: { accent: '#FF6B2B', 'accent-light': '#FF8F5C' }
+            }
+        }
+    }
+    </script>
+</head>
+
+<body class="bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 antialiased">
+    <!-- NAV -->
+    <header class="fixed inset-x-0 top-0 z-50 transition-all duration-300"
+        :class="sc?'bg-white/90 dark:bg-zinc-950/90 backdrop-blur-md shadow-sm shadow-black/5':''">
+        <nav class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between" aria-label="Main navigation">
+
+            <a href="#hero" class="font-display font-bold text-xl tracking-tight relative z-10">
+                <span class="text-zinc-900 dark:text-white">yuvraj </span><span class="text-accent">parmar</span>
+            </a>
+
+            <ul class="hidden md:flex items-center gap-8 text-sm" role="list">
+                <li><a href="#services" class="nl text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors" :class="s==='services'?'on !text-zinc-900 dark:!text-white':''">Services</a></li>
+                <li><a href="#work"     class="nl text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors" :class="s==='work'?'on !text-zinc-900 dark:!text-white':''">Work</a></li>
+                <li><a href="#about"   class="nl text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors" :class="s==='about'?'on !text-zinc-900 dark:!text-white':''">About</a></li>
+                <li><a href="#contact" class="nl text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors" :class="s==='contact'?'on !text-zinc-900 dark:!text-white':''">Contact</a></li>
+            </ul>
+
+            <div class="flex items-center gap-3">
+                <!-- dark toggle -->
+                <button @click="dark=!dark" class="w-9 h-9 flex items-center justify-center rounded-full border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors" :aria-label="dark?'Light mode':'Dark mode'">
+                    <svg x-show="!dark" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+                    <svg x-show="dark"  class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707M17.657 17.657l-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z"/></svg>
+                </button>
+                <!-- hire me -->
+                <a href="#contact" class="hidden md:inline-flex items-center gap-2 shimmer bg-accent text-white text-sm font-medium px-5 py-2 rounded-full hover:bg-accent-light transition-colors">
+                    Hire me <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                </a>
+                <!-- hamburger -->
+                <button @click="mm=!mm" class="md:hidden w-9 h-9 flex items-center justify-center rounded-full border border-zinc-200 dark:border-zinc-800" :aria-expanded="mm" aria-label="Toggle menu">
+                    <svg x-show="!mm" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                    <svg x-show="mm"  class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+            </div>
+        </nav>
+
+        <!-- mobile menu -->
+        <div x-show="mm" x-cloak
+            x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 -translate-y-2" x-transition:enter-end="opacity-100 translate-y-0"
+            x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100 translate-y-0" x-transition:leave-end="opacity-0 -translate-y-2"
+            class="md:hidden bg-white dark:bg-zinc-950 border-t border-zinc-100 dark:border-zinc-900">
+            <ul class="flex flex-col px-6 py-5 gap-4 text-sm font-medium" role="list">
+                <li><a href="#services" @click="mm=false" class="block text-zinc-700 dark:text-zinc-300 hover:text-accent transition-colors">Services</a></li>
+                <li><a href="#work"     @click="mm=false" class="block text-zinc-700 dark:text-zinc-300 hover:text-accent transition-colors">Work</a></li>
+                <li><a href="#about"   @click="mm=false" class="block text-zinc-700 dark:text-zinc-300 hover:text-accent transition-colors">About</a></li>
+                <li><a href="#contact" @click="mm=false" class="block text-zinc-700 dark:text-zinc-300 hover:text-accent transition-colors">Contact</a></li>
+                <li class="pt-2 border-t border-zinc-100 dark:border-zinc-900">
+                    <a href="#contact" @click="mm=false" class="inline-flex shimmer bg-accent text-white font-medium text-sm px-5 py-2.5 rounded-full">Hire me &rarr;</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO -->
+        <section id="hero" class="relative min-h-screen flex items-center pt-16 overflow-hidden">
+            <div class="absolute top-1/4 right-0 w-96 h-96 bg-accent/10 rounded-full blur-3xl pointer-events-none" aria-hidden="true"></div>
+            <div class="absolute bottom-1/4 left-0 w-64 h-64 bg-zinc-200/50 dark:bg-zinc-800/30 rounded-full blur-3xl pointer-events-none" aria-hidden="true"></div>
+
+            <div class="relative z-10 max-w-6xl mx-auto px-6 py-24 w-full">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-xs font-medium text-zinc-600 dark:text-zinc-400 mb-6 reveal d1">
+                            <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                            Seeking Entry-Level Opportunities
+                        </div>
+                        
+                        <h1 class="text-5xl md:text-7xl font-display font-bold leading-[1.1] tracking-tight mb-6 reveal d2">
+                            Fresher in<br>
+                            <span class="text-accent italic">IT</span> & Web.
+                        </h1>
+                        
+                        <p class="text-lg md:text-xl text-zinc-600 dark:text-zinc-400 mb-8 max-w-lg reveal d3 leading-relaxed">
+                            Hi, I'm Yuvraj Parmar. A dedicated fresher pursuing a Diploma in Information Technology, with hands-on knowledge of HTML & CSS. Eager to start my IT career and apply my technical skills.
+                        </p>
+
+                        <div class="flex flex-wrap items-center gap-4 reveal d4">
+                            <a href="#work" class="shimmer bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 px-7 py-3.5 rounded-full font-medium hover:bg-zinc-800 dark:hover:bg-zinc-100 transition-colors">
+                                View my work
+                            </a>
+                            <a href="#contact" class="px-7 py-3.5 rounded-full font-medium border border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 transition-colors">
+                                Get in touch
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="relative reveal d3">
+                        <div class="aspect-square rounded-full border border-zinc-200 dark:border-zinc-800 p-2 relative z-10 bg-white/50 dark:bg-zinc-950/50 backdrop-blur-sm">
+                            <div class="w-full h-full rounded-full overflow-hidden bg-zinc-100 dark:bg-zinc-900 flex items-center justify-center">
+                                <img src="profile.jpg" alt="Yuvraj Parmar" class="w-full h-full object-cover" />
+                            </div>
+                        </div>
+                        
+                        <!-- Floating badge -->
+                        <div class="absolute -right-4 top-12 bg-white dark:bg-zinc-900 p-4 rounded-2xl shadow-xl border border-zinc-100 dark:border-zinc-800 animate-bounce" style="animation-duration: 3s;">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center text-accent">
+                                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                                </div>
+                                <div>
+                                    <div class="text-sm font-bold">Fast &</div>
+                                    <div class="text-xs text-zinc-500">Responsive</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- WORK -->
+        <section id="work" class="py-24 bg-zinc-50 dark:bg-zinc-900/50">
+            <div class="max-w-6xl mx-auto px-6">
+                <div class="mb-12 reveal d1">
+                    <h2 class="text-3xl md:text-5xl font-display font-bold tracking-tight mb-4">Selected <span class="text-accent italic">Work</span></h2>
+                    <p class="text-zinc-600 dark:text-zinc-400 max-w-2xl text-lg">A selection of my recent projects. More available upon request.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Project 1 -->
+                    <a href="http://127.0.0.1:5501/CSS/restorent.html" target="_blank" class="group block reveal d2">
+                        <div class="pf rounded-2xl aspect-[4/3] mb-6 relative border border-zinc-200 dark:border-zinc-800 card-h">
+                            <div class="absolute inset-0 bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center text-6xl">
+                                🍽️
+                            </div>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-2 group-hover:text-accent transition-colors">Foodie's Restaurant</h3>
+                        <p class="text-zinc-600 dark:text-zinc-400 mb-4">A delicious food website featuring a home page, interactive menu, and contact section.</p>
+                        <div class="flex gap-2">
+                            <span class="px-3 py-1 text-xs font-medium border border-zinc-200 dark:border-zinc-700 rounded-full stag">HTML</span>
+                            <span class="px-3 py-1 text-xs font-medium border border-zinc-200 dark:border-zinc-700 rounded-full stag">CSS</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section id="contact" class="py-24 bg-white dark:bg-zinc-950">
+            <div class="max-w-6xl mx-auto px-6 text-center">
+                <div class="mb-12 reveal d1">
+                    <h2 class="text-3xl md:text-5xl font-display font-bold tracking-tight mb-4">Let's <span class="text-accent italic">Talk</span></h2>
+                    <p class="text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto text-lg">Interested in working together or just want to say hi? I'd love to hear from you.</p>
+                </div>
+
+                <div class="flex flex-col md:flex-row justify-center items-center gap-8 reveal d2">
+                    <a href="mailto:yuvi881088@gmail.com" class="flex items-center gap-3 px-6 py-4 rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:border-accent dark:hover:border-accent transition-colors group">
+                        <div class="w-12 h-12 rounded-full bg-zinc-100 dark:bg-zinc-900 flex items-center justify-center group-hover:bg-accent/10 transition-colors">
+                            <span class="text-xl">📧</span>
+                        </div>
+                        <div class="text-left">
+                            <div class="text-sm text-zinc-500">Email Me</div>
+                            <div class="font-medium">yuvi881088@gmail.com</div>
+                        </div>
+                    </a>
+
+                    <a href="tel:+916261881088" class="flex items-center gap-3 px-6 py-4 rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:border-accent dark:hover:border-accent transition-colors group">
+                        <div class="w-12 h-12 rounded-full bg-zinc-100 dark:bg-zinc-900 flex items-center justify-center group-hover:bg-accent/10 transition-colors">
+                            <span class="text-xl">📞</span>
+                        </div>
+                        <div class="text-left">
+                            <div class="text-sm text-zinc-500">Call Me</div>
+                            <div class="font-medium">+91 6261881088</div>
+                        </div>
+                    </a>
+                    
+                    <div class="flex items-center gap-3 px-6 py-4 rounded-2xl border border-zinc-200 dark:border-zinc-800 group">
+                        <div class="w-12 h-12 rounded-full bg-zinc-100 dark:bg-zinc-900 flex items-center justify-center">
+                            <span class="text-xl">📍</span>
+                        </div>
+                        <div class="text-left">
+                            <div class="text-sm text-zinc-500">Location</div>
+                            <div class="font-medium">Ujjain</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT / RESUME -->
+        <section id="about" class="py-24 bg-zinc-50 dark:bg-zinc-900/50 border-t border-zinc-200 dark:border-zinc-800">
+            <div class="max-w-6xl mx-auto px-6">
+                <div class="mb-12 reveal d1">
+                    <h2 class="text-3xl md:text-5xl font-display font-bold tracking-tight mb-4">About <span class="text-accent italic">Me</span></h2>
+                    <p class="text-zinc-600 dark:text-zinc-400 max-w-2xl text-lg">A brief overview of my education, skills, and strengths.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-12 reveal d2">
+                    <!-- Left Column -->
+                    <div class="space-y-12">
+                        <!-- Education -->
+                        <div>
+                            <div class="flex items-center gap-3 mb-6">
+                                <span class="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center text-accent text-xl">🎓</span>
+                                <h3 class="text-2xl font-bold">Education</h3>
+                            </div>
+                            <div class="p-6 rounded-2xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800">
+                                <h4 class="font-bold text-lg mb-1">Diploma in Information Technology</h4>
+                                <p class="text-accent text-sm font-medium mb-3">Currently Pursuing</p>
+                                <p class="text-zinc-600 dark:text-zinc-400">Dedicated and hardworking fresher with hands-on knowledge of HTML and CSS, eager to learn and contribute to the IT field.</p>
+                            </div>
+                        </div>
+
+                        <!-- Languages -->
+                        <div>
+                            <div class="flex items-center gap-3 mb-6">
+                                <span class="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center text-accent text-xl">🌐</span>
+                                <h3 class="text-2xl font-bold">Languages</h3>
+                            </div>
+                            <div class="flex gap-4">
+                                <div class="flex-1 p-4 rounded-xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 text-center">
+                                    <div class="font-bold">English</div>
+                                    <div class="text-sm text-zinc-500">Native</div>
+                                </div>
+                                <div class="flex-1 p-4 rounded-xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 text-center">
+                                    <div class="font-bold">Hindi</div>
+                                    <div class="text-sm text-zinc-500">Advanced</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column -->
+                    <div class="space-y-12">
+                        <!-- Skills -->
+                        <div>
+                            <div class="flex items-center gap-3 mb-6">
+                                <span class="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center text-accent text-xl">💻</span>
+                                <h3 class="text-2xl font-bold">Computer Skills</h3>
+                            </div>
+                            <div class="p-6 rounded-2xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800">
+                                <ul class="space-y-3">
+                                    <li class="flex items-start gap-3">
+                                        <span class="text-accent mt-0.5">✓</span>
+                                        <span>HTML & CSS</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <span class="text-accent mt-0.5">✓</span>
+                                        <span>Basic Computer Operations</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <span class="text-accent mt-0.5">✓</span>
+                                        <span>Canva (Graphic Design & Presentation)</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <span class="text-accent mt-0.5">✓</span>
+                                        <span>AI Tools: Gemini AI, Claude AI</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <span class="text-accent mt-0.5">✓</span>
+                                        <span>Internet Research & Online Productivity Tools</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Strengths -->
+                        <div>
+                            <div class="flex items-center gap-3 mb-6">
+                                <span class="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center text-accent text-xl">⭐</span>
+                                <h3 class="text-2xl font-bold">Strengths</h3>
+                            </div>
+                            <div class="p-6 rounded-2xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800">
+                                <ul class="space-y-3">
+                                    <li class="flex items-start gap-3">
+                                        <span class="text-accent mt-0.5">✓</span>
+                                        <span>Quick learner and adaptable to new environments</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <span class="text-accent mt-0.5">✓</span>
+                                        <span>Good communication and interpersonal skills</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <span class="text-accent mt-0.5">✓</span>
+                                        <span>Positive attitude and willingness to take on responsibilities</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <span class="text-accent mt-0.5">✓</span>
+                                        <span>Punctual, disciplined, and a team player</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    <!-- FOOTER -->
+    <footer class="py-8 border-t border-zinc-200 dark:border-zinc-800">
+        <div class="max-w-6xl mx-auto px-6 text-center text-sm text-zinc-500">
+            &copy; <span x-text="new Date().getFullYear()"></span> Yuvraj Parmar. All rights reserved.
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
