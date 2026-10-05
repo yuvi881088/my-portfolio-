@@ -1,0 +1,16 @@
+import{q as n,j as e,m as s,D as x,o as p}from"./ChatAssistant.D35mFsnI.js";import{r as h}from"./index.D-Pb_x6I.js";/**
+ * @license lucide-react v1.47.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */const o={name:"chevron-down",size:24,node:[["path",{d:"m6 9 6 6 6-6",key:"qrunsl"}]]};o.node;const m=n(o);/**
+ * @license lucide-react v1.47.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */const r={name:"circle-question-mark",size:24,node:[["circle",{cx:"12",cy:"12",r:"10",key:"1mglay"}],["path",{d:"M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3",key:"1u773s"}],["path",{d:"M12 17h.01",key:"p32p05"}]],aliases:["help-circle","circle-help"]};r.node;const u=n(r);/**
+ * @license lucide-react v1.47.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */const l={name:"mail",size:24,node:[["path",{d:"m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7",key:"132q7q"}],["rect",{x:"2",y:"4",width:"20",height:"16",rx:"2",key:"izxlao"}]]};l.node;const b=n(l);function g(){const[a,c]=h.useState(0),d=i=>{c(a===i?null:i)};return e.jsx("section",{id:"faq",className:"py-24 bg-white",children:e.jsxs("div",{className:"max-w-4xl mx-auto px-6",children:[e.jsxs("div",{className:"text-center mb-16",children:[e.jsxs(s.div,{initial:{opacity:0,y:20},whileInView:{opacity:1,y:0},viewport:{once:!0},transition:{duration:.5},className:"inline-flex items-center space-x-2 bg-slate-100 text-slate-600 px-4 py-2 rounded-full text-sm font-semibold mb-6",children:[e.jsx(u,{className:"w-4 h-4"}),e.jsx("span",{children:"Got Questions?"})]}),e.jsx(s.h2,{initial:{opacity:0,y:20},whileInView:{opacity:1,y:0},viewport:{once:!0},transition:{duration:.5,delay:.1},className:"text-4xl md:text-5xl font-bold mb-6 text-slate-900",children:"Frequently Asked Questions"}),e.jsx(s.p,{initial:{opacity:0,y:20},whileInView:{opacity:1,y:0},viewport:{once:!0},transition:{duration:.5,delay:.2},className:"text-lg text-slate-600",children:"Everything you need to know about our process, pricing, and how we work."})]}),e.jsx("div",{className:"space-y-4",children:x.map((i,t)=>e.jsxs(s.div,{initial:{opacity:0,y:10},whileInView:{opacity:1,y:0},viewport:{once:!0},transition:{duration:.4,delay:t*.1},className:`border rounded-2xl overflow-hidden transition-colors duration-300 ${a===t?"border-orange-500 bg-orange-50/30":"border-slate-200 bg-white hover:border-slate-300"}`,children:[e.jsxs("button",{className:"w-full px-6 py-5 text-left flex items-center justify-between focus:outline-none",onClick:()=>d(t),children:[e.jsx("span",{className:`font-semibold text-lg ${a===t?"text-orange-600":"text-slate-900"}`,children:i.question}),e.jsx(m,{className:`w-5 h-5 transition-transform duration-300 ${a===t?"rotate-180 text-orange-600":"text-slate-400"}`})]}),e.jsx(p,{children:a===t&&e.jsx(s.div,{initial:{height:0,opacity:0},animate:{height:"auto",opacity:1},exit:{height:0,opacity:0},transition:{duration:.3,ease:"easeInOut"},children:e.jsx("div",{className:"px-6 pb-6 text-slate-600 leading-relaxed border-t border-slate-100 pt-4",children:i.answer})})})]},t))})]})})}export{m as C,g as F,b as M,u as a};

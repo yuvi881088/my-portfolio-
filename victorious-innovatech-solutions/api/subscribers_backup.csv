@@ -1,0 +1,7 @@
+ID,Email,"IP Address",Date
+FALLBACK,client@test.com,::1,"2026-09-22 10:12:34"
+FALLBACK,test_build_97239221@example.com,::1,"2026-09-22 11:25:19"
+FALLBACK,test_build_316921877@example.com,127.0.0.1,"2026-09-29 10:28:16"
+FALLBACK,test_newsletter_user_546@gmail.com,127.0.0.1,"2026-09-29 12:16:27"
+FALLBACK,yuvi881088@gmail.com,127.0.0.1,"2026-09-29 12:19:10"
+FALLBACK,yuvi881088@gmail.com,127.0.0.1,"2026-10-02 08:57:56"

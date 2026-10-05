@@ -1,0 +1,5 @@
+# Deny direct browser access to sensitive data files
+<FilesMatch "\.(csv|sql|env|log|bak)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
